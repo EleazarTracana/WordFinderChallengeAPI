@@ -1,0 +1,46 @@
+# .NET
+bin/
+obj/
+
+# Visual Studio Code
+.vscode/
+
+# Rider
+.idea/
+
+# User-specific files
+*.suo
+*.user
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Visual Studio for Mac
+.idea/
+.vscode/
+.suo
+*.userprefs
+*.sln.docstates
+
+# Packages folder
+packages/
