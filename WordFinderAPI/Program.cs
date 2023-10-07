@@ -1,5 +1,7 @@
 using FluentValidation;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using WordFinderAPI;
 using WordFinderAPI.Core.Models;
 using WordFinderAPI.Infrastructure.CacheProvider;
 using WordFinderAPI.Interfaces;
@@ -31,14 +33,25 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Middleware for exceptions.
 app.UseHttpsRedirection();
 
-// Minimal WordFinder Endpoints.
+app.UseExceptionHandler(errorApp =>
+{
+    errorApp.Run(async context =>
+    {
+        var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+        var exception = exceptionHandlerPathFeature.Error;
+        context.Response.StatusCode = 500;
+        await context.Response.WriteAsJsonAsync(new ErrorResponse(exception));
+    });
+});
+
 app.MapPost("/api/word-finder", (PostWordFinder));
 Task<IResult> PostWordFinder([FromBody] WordFinder wordFinder, IWordFinderService wordFinderService)
 {
     IEnumerable<string> wordsFound = wordFinderService.Find(wordFinder);
     return Task.FromResult(Results.Ok(wordsFound));
 };
-    
+
 app.Run();
