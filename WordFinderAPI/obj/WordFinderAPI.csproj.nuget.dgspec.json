@@ -4,6 +4,189 @@
     "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI/WordFinderAPI.csproj": {}
   },
   "projects": {
+    "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Core/WordFinderAPI.Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Core/WordFinderAPI.Core.csproj",
+        "projectName": "WordFinderAPI.Core",
+        "projectPath": "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Core/WordFinderAPI.Core.csproj",
+        "packagesPath": "/Users/eleazar/.nuget/packages/",
+        "outputPath": "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Core/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/eleazar/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/x64/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/7.0.304/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Interfaces/WordFinderAPI.Interfaces.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Interfaces/WordFinderAPI.Interfaces.csproj",
+        "projectName": "WordFinderAPI.Interfaces",
+        "projectPath": "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Interfaces/WordFinderAPI.Interfaces.csproj",
+        "packagesPath": "/Users/eleazar/.nuget/packages/",
+        "outputPath": "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Interfaces/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/eleazar/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/x64/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Core/WordFinderAPI.Core.csproj": {
+                "projectPath": "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Core/WordFinderAPI.Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/7.0.304/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Services/WordFinderAPI.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Services/WordFinderAPI.Services.csproj",
+        "projectName": "WordFinderAPI.Services",
+        "projectPath": "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Services/WordFinderAPI.Services.csproj",
+        "packagesPath": "/Users/eleazar/.nuget/packages/",
+        "outputPath": "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Services/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/eleazar/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/x64/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Core/WordFinderAPI.Core.csproj": {
+                "projectPath": "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Core/WordFinderAPI.Core.csproj"
+              },
+              "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Interfaces/WordFinderAPI.Interfaces.csproj": {
+                "projectPath": "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Interfaces/WordFinderAPI.Interfaces.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.7.1, )"
+            },
+            "Microsoft.Extensions.Logging": {
+              "target": "Package",
+              "version": "[8.0.0-rc.1.23419.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/x64/sdk/7.0.304/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI/WordFinderAPI.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -27,7 +210,11 @@
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Services/WordFinderAPI.Services.csproj": {
+                "projectPath": "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI.Services/WordFinderAPI.Services.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

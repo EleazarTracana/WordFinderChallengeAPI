@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:13.2
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: keycloak
+      POSTGRES_PASSWORD: keycloak
+    networks:
+      - local-keycloak
+  keycloak:
+    depends_on:
+      - postgres
+    container_name: local_keycloak
+    environment:
+      DB_VENDOR: postgres
+      DB_ADDR: postgres
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: keycloak
+    image: jboss/keycloak:16.1.1
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    networks:
+      - local-keycloak
+  redis-cache:
+    image: redis:6.2.7
+    ports:
+      - "127.0.0.1:6379:6379"
+  word-finder-api:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - redis-cache
+networks:
+  local-keycloak: {}
+

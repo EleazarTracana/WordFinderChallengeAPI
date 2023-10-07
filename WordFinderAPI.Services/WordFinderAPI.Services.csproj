@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>Services</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\CacheProvider\CacheProvider.csproj" />
+      <ProjectReference Include="..\WordFinderAPI.Core\WordFinderAPI.Core.csproj" />
+      <ProjectReference Include="..\WordFinderAPI.Infrastructure\WordFinderAPI.Infrastructure.csproj" />
+      <ProjectReference Include="..\WordFinderAPI.Interfaces\WordFinderAPI.Interfaces.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FluentValidation" Version="11.7.1" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="8.0.0-rc.1.23419.4" />
+    </ItemGroup>
+
+</Project>
