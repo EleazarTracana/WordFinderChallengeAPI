@@ -27,12 +27,72 @@ public class WordFinderServiceTest
     [Fact]
     public void FindWords_ShouldReturnEmpty()
     {
-        //
+        WordFinder wordFinder = new WordFinder
+        {
+            Matrix = new List<string>
+            {
+                "abcdefg",
+                "hijklmn",
+                "opqrstu"
+            },
+            WordStream = new List<string>
+            {
+                "xyz",
+                "123"
+            }
+        };
+        
+        var result = _wordFinderService.Find(wordFinder);
+        Assert.Empty(result);
     }
 
     [Fact]
-    public void FindWords_ShouldReturnMultipleRepeated()
+    public void FindWords_ShouldReturnHorizontalWords()
     {
-        //
+        WordFinder wordFinder = new WordFinder
+        {
+            Matrix = new List<string>
+            {
+                "abcxyzdef",
+                "ghixyzklm",
+                "nopxyzqrstu"
+            },
+            WordStream = new List<string>
+            {
+                "xyz",
+                "def",
+                "klm"
+            }
+        };
+        
+        IEnumerable<string> result = _wordFinderService.Find(wordFinder);
+        Assert.Equal(3, result.Count());
+        Assert.Equal("xyz", result.First());
+        Assert.Equal("def", result.Skip(1).First());
+        Assert.Equal("klm", result.Last());
+    }
+    
+    [Fact]
+    public void FindWords_ShouldReturnVerticalWords()
+    {
+        WordFinder wordFinder = new WordFinder
+        {
+            Matrix = new List<string>
+            {
+                "abcx",
+                "defy",
+                "ghiz",
+                "jkjm"
+            },
+            WordStream = new List<string>
+            {
+                "xyz",
+                "fij"
+            }
+        };
+        IEnumerable<string> result = _wordFinderService.Find(wordFinder);
+        Assert.Equal(2, result.Count());
+        Assert.Contains("xyz", result);
+        Assert.Contains("fij", result);
     }
 }
