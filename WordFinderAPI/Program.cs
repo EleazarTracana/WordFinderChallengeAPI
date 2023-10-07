@@ -1,4 +1,6 @@
 using FluentValidation;
+using Keycloak.AuthServices.Authentication;
+using Keycloak.AuthServices.Authorization;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using WordFinderAPI;
@@ -26,6 +28,16 @@ builder.Services.Configure<RedisOptions>(options => builder.Configuration.GetSec
 builder.Services.AddScoped<ICacheProvider, RedisCacheProvider>();
 builder.Services.AddScoped<IWordFinderCache, WordFinderCache>();
 
+builder.Services.AddKeycloakAuthentication(builder.Configuration);
+builder.Services.AddAuthorization(o => o.AddPolicy("IsAdmin", b =>
+{
+    b.RequireRealmRoles("admin");
+    b.RequireResourceRoles("r-admin"); // stands for "resource admin"
+    b.RequireRole("r-admin"); 
+}));
+
+builder.Services.AddKeycloakAuthorization(builder.Configuration);
+
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
@@ -34,6 +46,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.UseExceptionHandler(errorApp =>
 {
     errorApp.Run(async context =>
@@ -45,7 +60,7 @@ app.UseExceptionHandler(errorApp =>
     });
 });
 
-app.MapPost("/api/word-finder", (PostWordFinder));
+app.MapPost("/api/word-finder", (PostWordFinder)).RequireAuthorization();
 Task<IResult> PostWordFinder([FromBody] WordFinder wordFinder, IWordFinderService wordFinderService)
 {
     IEnumerable<string> wordsFound = wordFinderService.Find(wordFinder);
