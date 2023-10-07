@@ -33,9 +33,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-// Middleware for exceptions.
 app.UseHttpsRedirection();
-
 app.UseExceptionHandler(errorApp =>
 {
     errorApp.Run(async context =>

@@ -1,14 +1,15 @@
-
-
 using WordFinderAPI.Infrastructure.CacheProvider;
 using WordFinderAPI.Interfaces.Cache;
 
 namespace WordFinderAPI.Services.Cache;
 
+/// <summary>
+/// Provides caching functionality for storing and retrieving word search results based on matrix input.
+/// </summary>
 public class WordFinderCache : IWordFinderCache
 {
     private const string JoinMatrixDelimiter = "";
-    private ICacheProvider _cacheProvider;
+    private readonly ICacheProvider _cacheProvider;
 
     public WordFinderCache(ICacheProvider cacheProvider)
     {

@@ -6,8 +6,12 @@ using WordFinderAPI.Interfaces;
 using WordFinderAPI.Interfaces.Cache;
 using WordFinderAPI.Services.Validator;
 
+
 namespace WordFinderAPI.Services
 {
+    /// <summary>
+    /// Provides functionality for finding words within a matrix using various search patterns.
+    /// </summary>
     public class WordFinderService : IWordFinderService
     {
         private const int LatestTopWords = 10;
