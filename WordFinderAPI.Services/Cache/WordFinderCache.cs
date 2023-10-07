@@ -19,7 +19,7 @@ public class WordFinderCache : IWordFinderCache
     public Task Save(IEnumerable<string> matrix, IEnumerable<string> foundWords)
     {
         _cacheProvider.Set(GetMatrixCacheKey(matrix), matrix, null);
-        throw new NotImplementedException();
+        return Task.CompletedTask;
     }
 
     private String GetMatrixCacheKey(IEnumerable<string> matrix) => string.Join(JoinMatrixDelimiter, matrix);
