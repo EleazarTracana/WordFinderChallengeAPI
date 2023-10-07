@@ -4,7 +4,7 @@ using StackExchange.Redis;
 
 namespace WordFinderAPI.Infrastructure.CacheProvider;
 
-public class RedisCacheProvider
+public class RedisCacheProvider : ICacheProvider
 {
     private readonly IDatabase _database;
     public RedisCacheProvider(IOptions<RedisOptions> redis)

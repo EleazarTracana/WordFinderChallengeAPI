@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "x3a0I4txK8rEU9EyqO0MlmDE1Tkys4ugrVZbzqQxT22ss/wi9MHlqUWe3HGX0/sSFH2ypgplCw35XDwio9XMow==",
+  "dgSpecHash": "AgS++7T7EQF7ZmI4IIIRtxha8w01D8vHDSIoIXPTS83v42/uKEIsnQN52mKriW8xuILhHitLR15SRNSBrE+D6A==",
   "success": true,
   "projectFilePath": "/Users/eleazar/Desktop/experimental/WordFinderAPI/WordFinderAPI/WordFinderAPI.csproj",
   "expectedPackageFiles": [
@@ -14,10 +14,14 @@
     "/Users/eleazar/.nuget/packages/microsoft.extensions.options/8.0.0-rc.1.23419.4/microsoft.extensions.options.8.0.0-rc.1.23419.4.nupkg.sha512",
     "/Users/eleazar/.nuget/packages/microsoft.extensions.primitives/8.0.0-rc.1.23419.4/microsoft.extensions.primitives.8.0.0-rc.1.23419.4.nupkg.sha512",
     "/Users/eleazar/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
+    "/Users/eleazar/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/Users/eleazar/.nuget/packages/pipelines.sockets.unofficial/2.2.8/pipelines.sockets.unofficial.2.2.8.nupkg.sha512",
+    "/Users/eleazar/.nuget/packages/stackexchange.redis/2.6.122/stackexchange.redis.2.6.122.nupkg.sha512",
     "/Users/eleazar/.nuget/packages/swashbuckle.aspnetcore/6.5.0/swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "/Users/eleazar/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "/Users/eleazar/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.5.0/swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",
-    "/Users/eleazar/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+    "/Users/eleazar/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
+    "/Users/eleazar/.nuget/packages/system.io.pipelines/5.0.1/system.io.pipelines.5.0.1.nupkg.sha512"
   ],
   "logs": []
 }

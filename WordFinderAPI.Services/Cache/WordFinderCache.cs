@@ -8,17 +8,17 @@ namespace WordFinderAPI.Services.Cache;
 public class WordFinderCache : IWordFinderCache
 {
     private const string JoinMatrixDelimiter = "";
-    private RedisCacheProvider _redisCacheProvider;
+    private ICacheProvider _cacheProvider;
 
-    public WordFinderCache(RedisCacheProvider redisCacheProvider)
+    public WordFinderCache(ICacheProvider cacheProvider)
     {
-        _redisCacheProvider = redisCacheProvider;
+        _cacheProvider = cacheProvider;
     }
-    public IEnumerable<string> Get(IEnumerable<string> matrix) => _redisCacheProvider.Get<IEnumerable<string>>(GetMatrixCacheKey(matrix));
+    public IEnumerable<string> Get(IEnumerable<string> matrix) => _cacheProvider.Get<IEnumerable<string>>(GetMatrixCacheKey(matrix));
     
     public Task Save(IEnumerable<string> matrix, IEnumerable<string> foundWords)
     {
-        _redisCacheProvider.Set(GetMatrixCacheKey(matrix), matrix, null);
+        _cacheProvider.Set(GetMatrixCacheKey(matrix), matrix, null);
         throw new NotImplementedException();
     }
 

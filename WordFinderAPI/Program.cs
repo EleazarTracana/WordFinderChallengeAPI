@@ -16,14 +16,13 @@ builder.Services.AddSwaggerGen();
 // Business WordFinderAPI.Services.
 builder.Services.AddScoped<IWordFinderService, WordFinderService>();
 
-// Cache WordFinderAPI.Services.
-builder.Services.AddScoped<IWordFinderCache, WordFinderCache>();
-
 // Fluent Validation.
 builder.Services.AddScoped<IValidator<WordFinder>, WordFinderValidator>();
 
-// Redis.
+// Cache.
 builder.Services.Configure<RedisOptions>(options => builder.Configuration.GetSection(RedisOptions.Redis).Bind(options));
+builder.Services.AddScoped<ICacheProvider, RedisCacheProvider>();
+builder.Services.AddScoped<IWordFinderCache, WordFinderCache>();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
@@ -33,7 +32,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthorization();
 
 // Minimal WordFinder Endpoints.
 app.MapPost("/api/word-finder", (PostWordFinder));
