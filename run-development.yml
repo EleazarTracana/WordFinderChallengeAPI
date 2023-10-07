@@ -4,9 +4,8 @@ services:
     container_name: keycloak
     image: "quay.io/keycloak/keycloak:22.0.4"
     volumes:
-      - ./imports:/opt/jboss/keycloak/imports
-    command: 
-      - "-b 0.0.0.0 -Dkeycloak.import=/opt/jboss/keycloak/imports/realm-export.json"
+      - ./keycloak/imports:/opt/keycloak/data/import
+    command: ['start-dev','--import-realm']
     environment:
       JAVA_OPTS: "-Dkeycloak.profile=preview"
       KC_HEALTH_ENABLED: 'true'
