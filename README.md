@@ -32,7 +32,6 @@ Ready to fire things up locally? Just follow these simple steps:
 
    ```bash
    docker-compose -f run-development.yml up -d
-
 That's it! You're off to the races! 🏁
 ### Generating Auth Tokens 🚀
 
@@ -55,5 +54,16 @@ Don't forget this rule: when making requests to the WordFinderAPI, include the "
 ### Documentation 📚
 
 For a comprehensive list of available endpoints, along with their request bodies and parameters, head over to:
-http://localhost:3000/swagger/index.html
+http://localhost:3000/swagger/index.html (Remember to have your local environment runnning)
 
+### Running Tests 🧪
+
+We've got your back with some tests to keep things in check over time. To run these tests and ensure everything's smooth, follow these simple steps:
+
+1. Navigate to the project's root folder.
+2. Jump into the WordFinderAPI.UnitTest folder:
+   ```bash
+   cd WordFinderAPI.UnitTest
+3. Execute the tests using this command:
+   ```bash
+   dotnet run test

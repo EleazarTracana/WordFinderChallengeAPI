@@ -58,9 +58,19 @@ app.UseExceptionHandler(errorApp =>
     });
 });
 
-app.MapPost("/api/word-finder", (PostWordFinder)).RequireAuthorization();
-async Task<IResult> PostWordFinder([FromBody] WordFinder wordFinder, IWordFinderService wordFinderService) 
-    => Results.Ok(await wordFinderService.FindAsync(wordFinder));
+app.MapPost("/api/word-finder", (WordFinder wordFinder, [FromServices] IWordFinderService wordFinderService) =>
+{
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [Produces("application/json")]
+    async Task<IResult> PostWordFinder()
+    {
+        IEnumerable<string> result = await wordFinderService.FindAsync(wordFinder);
+        return Results.Ok(result);
+    }
+
+    return PostWordFinder();
+}).RequireAuthorization();
 
 app.Run();
 
