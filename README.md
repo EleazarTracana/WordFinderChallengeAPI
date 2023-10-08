@@ -1,28 +1,42 @@
 # WordFinderAPI
 
-## QU Beyond Word Finder API
+## Description 
 
-### Development Environment Setup
+WordFinderAPI 🚀 is a Dockerized .NET 7 Minimal API crafted to tackle 2D string searches 🔍, as part of the QU Beyond developer challenge. We've containerized everything 🐳 to make it super easy for the awesome engineers reviewing our solution! 😎
 
+### System Overview:
 
-Before you can build this project, you must install and configure the following dependencies on your machine:
+Here's a quick look at what's inside:
+
+1. WordFinderAPI: Handles the WordFinder logic for QU Beyond Challenge. 🧙‍♂️
+2. Redis: Boosts WordFinderAPI's performance. 🚀
+3. Keycloak: Keeps WordFinderAPI secure with custom policies. 🔒
+
+###  WordFinder Request Example:
+
+![WordFinderOverview](https://github.com/EleazarTracana/WordFinderAPI/assets/48774395/05e98476-4b0c-4472-9039-6ed76eb88228)
+
+### Development Environment Setup 🛠️
+
+To get things rolling, make sure you've got these tools in your toolkit:
 
 1. Docker - You can download and install Docker from [docker.com](https://www.docker.com/products/docker-desktop).
 
-### Running the Local Environment
+### Running the Local Environment 🚀
 
-
-To run the local development environment, follow these steps:
+Ready to fire things up locally? Just follow these simple steps:
 
 1. Open a terminal and navigate to the root folder of the project.
 
-2. Run the following command to start the development environment using Docker Compose:
+2. Now, let's kickstart the local development environment with this command:
 
    ```bash
    docker-compose -f run-development.yml up -d
-### Generating Auth Tokens:
 
-Before you can interact with the WordFinderAPI, you need to generate an authorization token from our Keycloak service. Follow these steps to generate the token:
+That's it! You're off to the races! 🏁
+### Generating Auth Tokens 🚀
+
+Time to get access! To interact with the WordFinderAPI, you'll need an authorization token from our Keycloak service. It's easy, just follow these steps: 😎
 
 1. Replace the placeholders {USERNAME} and {PASSWORD} with your Keycloak username and password in the following curl command:
 
@@ -34,13 +48,4 @@ Before you can interact with the WordFinderAPI, you need to generate an authoriz
     --data-urlencode 'username={USERNAME}' \
     --data-urlencode 'password={PASSWORD}' \
     --data-urlencode 'scope=openid'
-   
-### System Overview:
 
-The system contains the following services:
-
-1. WordFinderAPI: A .NET 7 Minimal API for handling the WordFinder Logic for the QU Beyond Challenge.
-2. Redis: A Redis Database for improving the performance of the WordFinder API.
-3. Keycloak:  An Authorization Service for securing the WordFinder API endpoints through custom policies.
-
-![WordFinderOverview](https://github.com/EleazarTracana/WordFinderAPI/assets/48774395/05e98476-4b0c-4472-9039-6ed76eb88228)
