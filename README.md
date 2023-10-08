@@ -41,11 +41,19 @@ Time to get access! To interact with the WordFinderAPI, you'll need an authoriza
 1. Replace the placeholders {USERNAME} and {PASSWORD} with your Keycloak username and password in the following curl command:
 
    ```bash
-   curl --location --request POST 'http://localhost:8180/realms/wordfinder/protocol/openid-connect/token' \
+   curl --location --request POST 'http://localhost:8080/realms/wordfinder/protocol/openid-connect/token' \
     --header 'Content-Type: application/x-www-form-urlencoded' \
     --data-urlencode 'grant_type=password' \
     --data-urlencode 'client_id=word-finder-client' \
     --data-urlencode 'username={USERNAME}' \
     --data-urlencode 'password={PASSWORD}' \
     --data-urlencode 'scope=openid'
+
+Pro Tip 💡
+Don't forget this rule: when making requests to the WordFinderAPI, include the "Authorization" header with the prefix "Bearer " followed by your generated token
+
+### Documentation 📚
+
+For a comprehensive list of available endpoints, along with their request bodies and parameters, head over to:
+http://localhost:3000/swagger/index.html
 
