@@ -44,8 +44,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -65,3 +63,5 @@ async Task<IResult> PostWordFinder([FromBody] WordFinder wordFinder, IWordFinder
     => Results.Ok(await wordFinderService.FindAsync(wordFinder));
 
 app.Run();
+
+public partial class Program { }
