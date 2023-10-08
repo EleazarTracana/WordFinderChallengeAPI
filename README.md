@@ -34,3 +34,13 @@ Before you can interact with the WordFinderAPI, you need to generate an authoriz
     --data-urlencode 'username={USERNAME}' \
     --data-urlencode 'password={PASSWORD}' \
     --data-urlencode 'scope=openid'
+   
+### System Overview:
+
+The system contains the following services:
+
+1. WordFinderAPI: A .NET 7 Minimal API for handling the WordFinder Logic for the QU Beyond Challenge.
+2. Redis: A Redis Database for improving the performance of the WordFinder API.
+3. Keycloak:  An Authorization Service for securing the WordFinder API endpoints through custom policies.
+
+![WordFinderOverview](https://github.com/EleazarTracana/WordFinderAPI/assets/48774395/05e98476-4b0c-4472-9039-6ed76eb88228)
