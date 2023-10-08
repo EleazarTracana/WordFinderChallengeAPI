@@ -12,5 +12,5 @@ public interface IWordFinderService
     /// </summary>
     /// <param name="wordFinder">The WordFinder object containing matrix and search patterns.</param>
     /// <returns>An IEnumerable containing the found words.</returns>
-    IEnumerable<string> Find(WordFinder wordFinder);
+    Task<IEnumerable<string>> FindAsync(WordFinder wordFinder);
 }

@@ -28,34 +28,46 @@ namespace WordFinderAPI.Services
             _logger = logger;
         }
 
-        public IEnumerable<string> Find(WordFinder wordFinder)
+        public async Task<IEnumerable<string>> FindAsync(WordFinder wordFinder)
         {
             _wordFinderValidator.Validate(wordFinder, options =>
             {
                 options.IncludeRuleSets(ValidationType.WordFinder);
                 options.ThrowOnFailures();
             });
-            
-            _logger.LogDebug("Request to find wordsStream {}, in matrix: {}", wordFinder.WordStream, wordFinder.Matrix);
+
+            IEnumerable<string>? wordsFoundInCache = _wordFinderCache.Get(wordFinder);
+            if (wordsFoundInCache is not null)
+                return wordsFoundInCache;
+
+            _logger.LogDebug("Request to find wordStream {}, in matrix: {}", wordFinder.WordStream, wordFinder.Matrix);
 
             IEnumerable<string> cleanedWordStream = GetUniqueWordStream(wordFinder.WordStream);
-            IEnumerable<string> latestTopFoundWords = FindWords(wordFinder.Matrix, cleanedWordStream)
+            IEnumerable<string> findWords = await FindWords(wordFinder.Matrix, cleanedWordStream);
+                
+            IEnumerable<string> latestTopFoundWords = findWords
                 .GroupBy(word => word)
                 .OrderByDescending(group => group.Count())
                 .Select(group => group.Key)
                 .Take(LatestTopWords);
 
-            _wordFinderCache.Save(wordFinder.Matrix, latestTopFoundWords);
+            _wordFinderCache.Save(wordFinder, latestTopFoundWords);
             return latestTopFoundWords;
         }
         
 
         private IEnumerable<string> GetUniqueWordStream(IEnumerable<string> wordStream) => wordStream.Distinct();
-        private IEnumerable<string> FindWords(IEnumerable<string> matrix, IEnumerable<string> wordStream)
+        private async Task<IEnumerable<string>> FindWords(IEnumerable<string> matrix, IEnumerable<string> wordStream)
         {
-            IEnumerable<string> wordsFoundFromLeftToRightHorizontally = FindLeftToRightHorizontally(matrix, wordStream);
-            IEnumerable<string> wordsFoundFromTopToBottomVertically = FindTopToBottomVertically(matrix, wordStream);
-            return wordsFoundFromLeftToRightHorizontally.Concat(wordsFoundFromTopToBottomVertically);
+            Task<IEnumerable<string>> horizontalSearchTask = Task.Run(() => FindLeftToRightHorizontally(matrix, wordStream));
+            Task<IEnumerable<string>> verticalSearchTask = Task.Run(() => FindTopToBottomVertically(matrix, wordStream));
+
+            await Task.WhenAll(horizontalSearchTask, verticalSearchTask);
+            
+            IEnumerable<string> horizontalWords = horizontalSearchTask.Result;
+            IEnumerable<string> verticalWords = verticalSearchTask.Result;
+
+            return horizontalWords.Concat(verticalWords);
         }
 
         private IEnumerable<string> FindLeftToRightHorizontally(IEnumerable<string> matrix, IEnumerable<string> wordStream)
@@ -73,7 +85,8 @@ namespace WordFinderAPI.Services
             }
         }
 
-        private IEnumerable<string> FindTopToBottomVertically(IEnumerable<string> matrix, IEnumerable<string> wordStream)
+        private IEnumerable<string> FindTopToBottomVertically(IEnumerable<string> matrix,
+            IEnumerable<string> wordStream)
         {
             int matrixStringLength = matrix.First().Length;
             for (int col = 0; col < matrixStringLength; col++)
@@ -89,7 +102,5 @@ namespace WordFinderAPI.Services
                 }
             }
         }
-
-        private static bool IsNullOrEmpty<T>(IEnumerable<T> collection) => collection == null || !collection.Any();
     }
 }

@@ -19,8 +19,7 @@ public class RedisCacheProvider : ICacheProvider
     public T? Get<T>(string key)
     {
         RedisValue value = _database.StringGet(key);
-
-        return value.IsNullOrEmpty ? default(T) : JsonConvert.DeserializeObject<T>(value);
+        return value.IsNullOrEmpty ? default(T?) : JsonConvert.DeserializeObject<T>(value);
     }
 
     public bool Set<T>(string key, T value, TimeSpan? expiry)

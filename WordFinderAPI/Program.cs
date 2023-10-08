@@ -61,10 +61,7 @@ app.UseExceptionHandler(errorApp =>
 });
 
 app.MapPost("/api/word-finder", (PostWordFinder)).RequireAuthorization();
-Task<IResult> PostWordFinder([FromBody] WordFinder wordFinder, IWordFinderService wordFinderService)
-{
-    IEnumerable<string> wordsFound = wordFinderService.Find(wordFinder);
-    return Task.FromResult(Results.Ok(wordsFound));
-};
+async Task<IResult> PostWordFinder([FromBody] WordFinder wordFinder, IWordFinderService wordFinderService) 
+    => Results.Ok(await wordFinderService.FindAsync(wordFinder));
 
 app.Run();

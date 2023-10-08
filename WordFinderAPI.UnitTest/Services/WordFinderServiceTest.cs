@@ -22,10 +22,14 @@ public class WordFinderServiceTest
         _wordFinderValidatorMock = new Mock<IValidator<WordFinder>>();
         _worldFinderCacheServiceMock = new Mock<IWordFinderCache>();
         _wordFinderService = new WordFinderService(_worldFinderCacheServiceMock.Object, _loggerMock.Object, _wordFinderValidatorMock.Object);
+        
+        _worldFinderCacheServiceMock
+            .Setup(cache => cache.Get(It.IsAny<WordFinder>()))
+            .Returns((WordFinder key) => null);
     }
 
     [Fact]
-    public void FindWords_ShouldReturnEmpty()
+    public async Task FindWords_ShouldReturnEmpty()
     {
         WordFinder wordFinder = new WordFinder
         {
@@ -42,12 +46,12 @@ public class WordFinderServiceTest
             }
         };
         
-        var result = _wordFinderService.Find(wordFinder);
+        IEnumerable<string> result = await _wordFinderService.FindAsync(wordFinder);
         Assert.Empty(result);
     }
 
     [Fact]
-    public void FindWords_ShouldReturnHorizontalWords()
+    public async Task FindWords_ShouldReturnHorizontalWords()
     {
         WordFinder wordFinder = new WordFinder
         {
@@ -65,7 +69,7 @@ public class WordFinderServiceTest
             }
         };
         
-        IEnumerable<string> result = _wordFinderService.Find(wordFinder);
+        IEnumerable<string> result = await _wordFinderService.FindAsync(wordFinder);
         Assert.Equal(3, result.Count());
         Assert.Equal("xyz", result.First());
         Assert.Equal("def", result.Skip(1).First());
@@ -73,7 +77,7 @@ public class WordFinderServiceTest
     }
     
     [Fact]
-    public void FindWords_ShouldReturnVerticalWords()
+    public async Task FindWords_ShouldReturnVerticalWords()
     {
         WordFinder wordFinder = new WordFinder
         {
@@ -90,7 +94,7 @@ public class WordFinderServiceTest
                 "fij"
             }
         };
-        IEnumerable<string> result = _wordFinderService.Find(wordFinder);
+        IEnumerable<string> result = await _wordFinderService.FindAsync(wordFinder);
         Assert.Equal(2, result.Count());
         Assert.Contains("xyz", result);
         Assert.Contains("fij", result);
